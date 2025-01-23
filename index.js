@@ -7,7 +7,7 @@ const args = process.argv.slice(2); // ignores 'node' and 'index.js'
 
 const passLowAlph = "abcdefghijklmnopqrstuvwxyz"; // lowercase whitelist
 const passUpAlph = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // uppercase whitelist
-const passSpec = "!#$&#?{}"; // special symbols whitelist
+const passSpec = "!#$&?{}"; // special symbols whitelist
 const passNum = "1234567890"; // numbers whitelist
 
 // default password length, the minimum, and the maximum.
