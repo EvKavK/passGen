@@ -6,6 +6,9 @@ const process = require("process");
 const args = process.argv.slice(2); // ignores 'node' and 'index.js'
 
 const passLowAlph = "abcdefghijklmnopqrstuvwxyz"; // lowercase whitelist
+const passUpAlph = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // uppercase whitelist
+const passSpec = "!#$&#?{}"; // special symbols whitelist
+const passNum = "1234567890"; // numbers whitelist
 
 // default password length, the minimum, and the maximum.
 let passLength = 8;
@@ -18,6 +21,9 @@ let passPool = passLowAlph; // the password character pool will always have lowe
 
 const commands = [
     "--help",
+    "--upper",
+    "--special",
+    "--number",
     "--length"
 ]
 
@@ -26,6 +32,18 @@ if (args.includes("--help")) {
     help()
     process.exit(1)
 };
+
+if (args.includes("--upper")) {
+    upper()
+};
+
+if (args.includes("--special")) {
+    special()
+};
+
+if (args.includes("--number")) {
+    number()
+}
 
 if (args.includes("--length")) {
     length()
@@ -45,9 +63,25 @@ function help() {
     console.log("|---------------------------------------------------------------------------------------|");
     console.log("|                                                                                       |");
     console.log("| --help       - Displays the help menu (you are here!)                                 |");
+    console.log("| --upper      - Includes uppercase characters in password generation.                  |");
+    console.log("| --special    - Includes special characters in password generation.                    |");
+    console.log("| --number     - Includes number characters in password generation.                     |");
     console.log("| --length (#) - Adjusts the password's length from anywhere between 8-16 characters.   |");
     console.log("|                                                                                       |");
     console.log("|---------------------------------------------------------------------------------------|");
+};
+
+// adds more options into the passPool, depending on what arguments are added.
+function upper() {
+    passPool += passUpAlph
+};
+
+function special() {
+    passPool += passSpec
+};
+
+function number() {
+    passPool += passNum
 };
 
 // adjusts the length based on what the user inputs in the --length argument.
